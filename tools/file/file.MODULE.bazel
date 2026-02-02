@@ -1,0 +1,8 @@
+file = use_extension("@bazel_util//file:extensions.bzl", "file")
+file.files(
+    name = "files",
+    bazelrc = "tools/file/files.bazelrc",
+    build = "//tools/file:files.bazel",
+    root_file = "//:MODULE.bazel",
+)
+use_repo(file, "files")

@@ -1,3 +1,3 @@
 set -e
 
-"$(rlocation rules_pkg_extra/tools/bazel/bazelrc)"
+"$(rlocation files/packages/bazelrc)"

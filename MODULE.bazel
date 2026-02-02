@@ -1,0 +1,39 @@
+module(name = "rules_pkg_extra")
+
+# Bazel Util
+
+bazel_dep(name = "bazel_util")
+
+BAZEL_UTIL_VERSION = "7691525d0f7da7ae27ceb47ab7bf061251363fe4"
+
+archive_override(
+    module_name = "bazel_util",
+    sha256 = "d28ec8c5dfd84e55f58f6309f8ac5583ff8a5976bdd1fc6b20d88878e344e57f",
+    strip_prefix = "bazel-util-%s" % BAZEL_UTIL_VERSION,
+    url = "https://github.com/redoapp/bazel-util/archive/%s.tar.gz" % BAZEL_UTIL_VERSION,
+)
+
+# File
+
+include("//tools/file:file.MODULE.bazel")
+
+# Python
+
+bazel_dep(name = "rules_python", version = "1.4.1")
+
+# Skylib
+
+bazel_dep(name = "bazel_skylib", version = "1.7.1")
+
+# Shell
+
+bazel_dep(name = "rules_shell_extra")
+
+RULES_SHELL_EXTRA_VERSION = "93090b47f81577ba4890c770effd889f61ce5d19"
+
+archive_override(
+    module_name = "rules_shell_extra",
+    sha256 = "c69a83b7afefa03b21c370c2044c63c41800820f51680022604133a098e2c932",
+    strip_prefix = "rules_shell_extra-%s" % RULES_SHELL_EXTRA_VERSION,
+    url = "https://github.com/redoapp/rules_shell_extra/archive/%s.tar.gz" % RULES_SHELL_EXTRA_VERSION,
+)
