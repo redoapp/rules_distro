@@ -1,4 +1,4 @@
-file = use_extension("@bazel_util//file:extensions.bzl", "file")
+file = use_extension("@bazel_util//file:extensions.bzl", "file", dev_dependency = True)
 file.files(
     name = "files",
     bazelrc = "tools/file/files.bazelrc",
