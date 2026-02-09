@@ -1,5 +1,9 @@
 module(name = "rules_pkg_extra")
 
+# Aspect Bazel Lib
+
+bazel_dep(name = "aspect_bazel_lib", version = "2.8.1")
+
 # Bazel Util
 
 bazel_dep(name = "bazel_util")
@@ -16,6 +20,10 @@ archive_override(
 # File
 
 include("//tools/file:file.MODULE.bazel")
+
+# Pkg
+
+bazel_dep(name = "rules_pkg", version = "1.0.1")
 
 # Python
 
