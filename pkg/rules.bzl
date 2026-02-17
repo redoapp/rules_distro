@@ -24,6 +24,10 @@ def _pkg_executable_impl(ctx):
         dest_src_map = {"%s.files/%s" % (path, file.path): file for file in [bin] + runfiles_symlinks.values()},
         attributes = {"mode": "0755"},
     )
+    pkg_metadata = PackageFilesInfo(
+        dest_src_map = {"%s.runfiles/_repo_mapping" % path: bin_default.files_to_run.repo_mapping_manifest},
+        attributes = {"mode": "0644"},
+    )
     pkg_symlinks = [
         PackageSymlinkInfo(
             attributes = {"mode": "0755"},
@@ -42,11 +46,13 @@ def _pkg_executable_impl(ctx):
     )
 
     pkg_filegroup_info = PackageFilegroupInfo(
-        pkg_files = [(pkg_files, label)],
+        pkg_files = [(pkg_files, label), (pkg_metadata, label)],
         pkg_symlinks = [(symlink_info, label) for symlink_info in pkg_symlinks],
     )
 
-    default_info = DefaultInfo(files = depset([bin] + runfiles_symlinks.values()))
+    default_info = DefaultInfo(
+        files = depset([bin, bin_default.files_to_run.repo_mapping_manifest] + runfiles_symlinks.values()),
+    )
 
     return [default_info, pkg_filegroup_info]
 
