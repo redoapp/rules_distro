@@ -1,18 +1,14 @@
-module(name = "rules_pkg_extra")
-
-# Aspect Bazel Lib
-
-bazel_dep(name = "aspect_bazel_lib", version = "2.8.1")
+module(name = "rules_distro")
 
 # Bazel Util
 
 bazel_dep(name = "bazel_util")
 
-BAZEL_UTIL_VERSION = "7691525d0f7da7ae27ceb47ab7bf061251363fe4"
+BAZEL_UTIL_VERSION = "6b04cafa73358bbd8169f47483ff318f2bd92a8e"
 
 archive_override(
     module_name = "bazel_util",
-    sha256 = "d28ec8c5dfd84e55f58f6309f8ac5583ff8a5976bdd1fc6b20d88878e344e57f",
+    sha256 = "35221e3060045b73857c06b9698a878ee79b406d294b1e7bfa51aa88727cf313",
     strip_prefix = "bazel-util-%s" % BAZEL_UTIL_VERSION,
     url = "https://github.com/redoapp/bazel-util/archive/%s.tar.gz" % BAZEL_UTIL_VERSION,
 )
@@ -21,17 +17,9 @@ archive_override(
 
 include("//tools/file:file.MODULE.bazel")
 
-# Pkg
-
-bazel_dep(name = "rules_pkg", version = "1.0.1")
-
-# Python
-
-bazel_dep(name = "rules_python", version = "1.4.1")
-
 # Skylib
 
-bazel_dep(name = "bazel_skylib", version = "1.7.1")
+bazel_dep(name = "bazel_skylib", version = "1.9.0")
 
 # Shell
 

@@ -5,7 +5,7 @@ package(default_visibility = ["//visibility:public"])
 format(
     name = "bazel_lint",
     srcs = ["@files//:bazel_files"],
-    formatter = "//tools/buildifier",
+    formatter = "@bazel_util//buildifier",
     strip_prefix = "/files",
 )
 

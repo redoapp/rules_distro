@@ -1,3 +1,3 @@
-# Rules Package Extra
+# Rules Distro
 
-Bazel rules for packages, in addition to [rules_pkg](https://github.com/bazelbuild/rules_pkg).
+Bazel rules for package distributions.
