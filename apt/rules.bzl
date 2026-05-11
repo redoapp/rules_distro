@@ -1,11 +1,10 @@
+load("@bazel_lib//lib:paths.bzl", "to_rlocation_path")
 load("@bazel_skylib//lib:paths.bzl", "paths")
-load("@bazel_util//util:path.bzl", "runfile_path")
 
 def _apt_packages_index_impl(ctx):
     actions = ctx.actions
     name = ctx.attr.name
     srcs = ctx.files.srcs
-    workspace = ctx.workspace_name
 
     dummy = actions.declare_file("%s.dummy" % name)
     actions.write(content = "", output = dummy)
@@ -13,7 +12,7 @@ def _apt_packages_index_impl(ctx):
 
     links = []
     for src in srcs:
-        link = actions.declare_file("%s.packages/pool/%s" % (name, runfile_path(workspace, src)))
+        link = actions.declare_file("%s.packages/pool/%s" % (name, to_rlocation_path(ctx, src)))
         links.append(link)
         actions.symlink(output = link, target_file = src)
 
@@ -59,7 +58,6 @@ def _apt_repo_impl(ctx):
     packages_index = ctx.file.packages_index
     sources_index = ctx.file.sources_index
     srcs = ctx.files.srcs
-    workspace = ctx.workspace_name
 
     symlinks = []
     if packages_index:
@@ -71,7 +69,7 @@ def _apt_repo_impl(ctx):
         actions.symlink(output = symlink, target_file = sources_index)
         symlinks.append(symlink)
     for src in srcs:
-        symlink = actions.declare_file("%s/pool/%s" % (name, runfile_path(workspace, src)))
+        symlink = actions.declare_file("%s/pool/%s" % (name, to_rlocation_path(ctx, src)))
         actions.symlink(output = symlink, target_file = src)
         symlinks.append(symlink)
 

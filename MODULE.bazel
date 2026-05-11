@@ -1,14 +1,18 @@
 module(name = "rules_distro")
 
+# Bazel Lib
+
+bazel_dep(name = "bazel_lib", version = "3.2.1")
+
 # Bazel Util
 
 bazel_dep(name = "bazel_util")
 
-BAZEL_UTIL_VERSION = "6b04cafa73358bbd8169f47483ff318f2bd92a8e"
+BAZEL_UTIL_VERSION = "10ca8f8a72d8d8fc689fb0a09adfe050a60f2edb"
 
 archive_override(
     module_name = "bazel_util",
-    sha256 = "35221e3060045b73857c06b9698a878ee79b406d294b1e7bfa51aa88727cf313",
+    sha256 = "148ebecbfecbc89f8d695e7663989ac0c2a816b0e24584d35be4e5d3ebd2b61f",
     strip_prefix = "bazel-util-%s" % BAZEL_UTIL_VERSION,
     url = "https://github.com/redoapp/bazel-util/archive/%s.tar.gz" % BAZEL_UTIL_VERSION,
 )
